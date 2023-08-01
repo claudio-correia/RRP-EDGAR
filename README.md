@@ -18,6 +18,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 
 2. Unzip and mount the VM using VMware Workstation, which is available for Windows at:
    [https://www.vmware.com/products/workstation-player.html]
+   
    or VMware Fusion for macOS at:
    [https://www.vmware.com/products/fusion.html]
 
