@@ -25,7 +25,7 @@ In this section, we explain how to run our experiments in a simulated environmen
    ```
    <ins>or</ins> download the code from our repository into any directory inside the VM:
    ```bash
-   git clone XXXXXXXX
+   git clone https://github.com/claudio-correia/RRP-EDGAR
    ```
 
 4. We provide a bash script named `runFigures.sh` to automate simulations. Use the following command to run all simulations inside the root directory of our repository `RRP_EDGAR_Code` (this simulation can take several hours, around 5 hours):
