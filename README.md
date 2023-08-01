@@ -73,16 +73,10 @@ In this section, we explain how to run our experiments in a simulated environmen
 
 2. Unzip and mount the VM using VMware Workstation, which is available for Windows at:
    [https://www.vmware.com/products/workstation-player.html]
-   
-   or VMware Fusion for macOS at:
-   [https://www.vmware.com/products/fusion.html]
 
-<<<<<<< Updated upstream
-=======
      or VMware Fusion for macOS at:
    [https://www.vmware.com/products/fusion.html]
 
->>>>>>> Stashed changes
 4. Login (no password required) to Ubuntu inside the VM. Our code is already shipped inside the VM, so you can either open a terminal and navigate to the following directory:
    ```bash
    cd ~/Desktop/RRP-EDGAR
