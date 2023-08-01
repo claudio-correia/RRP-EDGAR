@@ -16,10 +16,12 @@ In this section, we explain how to run our experiments in a simulated environmen
 1. Download the virtual machine from the following link:
    [https://drive.google.com/drive/folders/1tuoyePArkWoYJRObHvYIbZG6Ouvr3BYD?usp=sharing]
 
-2. Unzip and mount the VM using VMware Workstation, which is available at:
+2. Unzip and mount the VM using VMware Workstation, which is available for Windows at:
    [https://www.vmware.com/products/workstation-player.html]
+   or VMware Fusion for macOS at:
+   [https://www.vmware.com/products/fusion.html]
 
-3. Login (no password required) to Ubuntu inside the VM. Our code is already shipped inside the VM, so you can either open a terminal and navigate to the following directory:
+4. Login (no password required) to Ubuntu inside the VM. Our code is already shipped inside the VM, so you can either open a terminal and navigate to the following directory:
    ```bash
    cd ~/Desktop/RRP-EDGAR
    ```
@@ -28,13 +30,13 @@ In this section, we explain how to run our experiments in a simulated environmen
    git clone https://github.com/claudio-correia/RRP-EDGAR
    ```
 
-4. We provide a bash script named `runFigures.sh` to automate simulations. Use the following command to run all simulations inside the root directory of our repository `RRP-EDGAR` (this simulation can take several hours, around 5 hours):
+5. We provide a bash script named `runFigures.sh` to automate simulations. Use the following command to run all simulations inside the root directory of our repository `RRP-EDGAR` (this simulation can take several hours, around 5 hours):
    ```bash
    ./runFigures.sh 
    ```
    The results will be stored in the `data` directory for each figure. For example, the data points for figure 7 will be stored in the `PlotFigures/Figure7/Data` directory.
 
-5. We provide a Python script named `plotFigures.sh` to analyze results and generate figures from it.
+6. We provide a Python script named `plotFigures.sh` to analyze results and generate figures from it.
    ```bash
    ./plotFigures.sh 
    ```
