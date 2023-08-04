@@ -113,7 +113,8 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo apt-get install build-essential python-is-python3
    sudo apt-get install libssl-dev libcurl4-openssl-dev libprotobuf-dev 
    ```
-2. We installed the Intel SGX driver, available here: [https://github.com/intel/linux-sgx-driver].
+
+3. We installed the Intel SGX driver, available here: [https://github.com/intel/linux-sgx-driver].
    ```bash
    cd ~/Downloads/
    git clone https://github.com/intel/linux-sgx-driver
@@ -125,7 +126,7 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo /sbin/depmod
    sudo /sbin/modprobe isgx
    ```
-3. Install the Intel SGX SDK:
+4. Install the Intel SGX SDK:
    ```bash
    cd ~/Downloads/
    git clone https://github.com/intel/linux-sgx.git
@@ -144,7 +145,7 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo ./sgx_linux_x64_sdk_2.20.100.4.bin
    ```
 
-4. Install the Intel SGX PSW:
+5. Install the Intel SGX PSW:
    ```bash
    cd ~/Downloads/linux-sgx
    make psw
