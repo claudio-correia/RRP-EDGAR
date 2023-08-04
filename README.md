@@ -102,7 +102,7 @@ The server machine needs to have the Intel Driver, SDK, and PSW installed to run
 It is recommended to follow the steps described by Intel in the above link. However, we also provide the steps we took to install these packages on our server. After installing a clean version of Ubuntu 22.04 LTS and enabling SGX in the BIOS, we followed these steps:
 
 1.  Install required packages and dependencies:
-      ```bash
+   ```bash
    sudo apt update
    sudo apt-get upgrade
    sudo apt install build-essential
