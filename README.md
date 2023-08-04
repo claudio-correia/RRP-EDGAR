@@ -1,4 +1,5 @@
 
+
 # RRP/EDGAR Implementation (CCS 2023)
 
 This is the official GitHub repository for the paper "Using Range-Revocable Pseudonyms to Provide Backward Unlinkability in the Edge," presented at CCS '23. The repository contains our code implementation and instructions on how to run the experiments. 
@@ -86,14 +87,17 @@ In this section, we explain how to run our experiments in a simulated environmen
    ```
    The figures (in PDF format) will be stored in each figure's directory. For example, figure 7 is located in `PlotFigures/Figure7/figure7.pdf`.
 
-## Execution in SGX hardware
-In this final section, we explain how to run our experiments in a real Intel SGX hardware. This deployment is more complex but it provides more accurate results. For this deploymt is requred two machiens: 
 
-- The **Server**:  the server machine must have Intel SGX availbel in the CPU and must be enabled in the BIOS. In our eseprriments we have used a Intel NUC10i7FNK 16GB RAM, and Ubuntu 22.04 LTS. We run the Intel SGX SDK Linux 2.13 Release version, Intel SSL-SGX, Pyhton3, Linux 2.14_1.1.1k and OpenSSL 1.1.1k. (CORRIGIR) 
-- The **Client**:  the client machine does not require SGX. We have used a machine simioar to the server, but is also possoible to use the preicusl presented docker container <ins>only</ins>  for the client.
+## Execution on SGX Hardware
 
+In this final section, we explain how to run our experiments on real Intel SGX hardware. This deployment is more complex, but it provides more accurate results. For this deployment, two machines are required:
 
-Both machines must be conneccted and reachble in a local network. The cclient needs to know the server IP, during this guuide we instruct when to provide this IP adress. 
+- The **Server**: The server machine must have Intel SGX available in the CPU and must be enabled in the BIOS. In our experiments, we used an Intel NUC10i7FNK with 16GB RAM, running Ubuntu 22.04 LTS. We utilized the Intel SGX SDK Linux 2.13 Release version, Intel SSL-SGX, Python3, Linux 2.14_1.1.1k, and OpenSSL 1.1.1d. 
+
+- The **Client**: The client machine does not require SGX. We used a machine similar to the server, but it is also possible to use the previously presented Docker container <ins>only</ins> for the client.
+
+Both machines must be connected and reachable in a local network. The client needs to know the server's IP, and during this guide, we will instruct when to provide this IP address.
+
 
 ### Intel Driver/SDK/PSW installation
 
@@ -102,20 +106,27 @@ The server machine needs to have the Intel Driver, SDK, and PSW installed to run
 It is recommended to follow the steps described by Intel in the above link. However, we also provide the steps we took to install these packages on our server. After installing a clean version of Ubuntu 22.04 LTS and enabling SGX in the BIOS, we followed these steps:
 
 1.  Install required packages and dependencies:
-   ```bash
-   sudo apt update
-   sudo apt-get upgrade
-   sudo apt install build-essential
-   sudo apt-get install linux-headers-$(uname -r)
-   sudo apt-get install build-essential ocaml ocamlbuild automake autoconf libtool wget python-is-python3 libssl-dev git cmake perl
-   sudo apt-get install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip pkgconf libboost-dev libboost-system-dev libboost-thread-dev lsb-release libsystemd0
-   sudo apt-get install vim
-   sudo apt-get install build-essential python-is-python3
-   sudo apt-get install libssl-dev libcurl4-openssl-dev libprotobuf-dev 
-   sudo apt-get install python3-pip
-   pip3 install numpy
-   pip3 install matplotlib 
-   ```
+    ```bash
+    sudo apt update
+    sudo apt-get upgrade
+    sudo apt install build-essential
+    sudo apt-get install linux-headers-$(uname -r)
+    sudo apt-get install build-essential ocaml ocamlbuild automake autoconf libtool wget python-is-python3 libssl-dev git cmake perl
+    sudo apt-get install libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake reprepro unzip pkgconf libboost-dev libboost-system-dev libboost-thread-dev lsb-release libsystemd0
+    sudo apt-get install vim
+    sudo apt-get install build-essential python-is-python3
+    sudo apt-get install libssl-dev libcurl4-openssl-dev libprotobuf-dev 
+    sudo apt-get install python3-pip
+    pip3 install numpy
+    pip3 install matplotlib 
+    ```
+
+
+
+
+
+
+
 
 2. We installed the Intel SGX driver, available here: [https://github.com/intel/linux-sgx-driver].
    ```bash
@@ -196,127 +207,127 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 
 #### Figure 7
 
-On the server machine, follow these steps:
+1. Run the server on the server machine, following these steps:
 
    ```bash
    cd RRP-EDGAR/CodeFigure7
    ./runServer.sh
    ```
 
-On the client machine, navigate to the same directory and edit the file `client.cpp`:
+2. On the client machine, navigate to the same directory and edit the file `client.cpp`:
 
    ```bash
    cd RRP-EDGAR/CodeFigure7
    vim client.cpp
    ```
 
-In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+   In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
 
    ```bash
    communication.connect_to("127.0.0.1");
    ```
 
-Then, in the same directory, execute:
+3. Execute the client, in the same directory, by:
 
    ```bash
    ./runClient.sh
    ```
 
-Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
+4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
    
    ```bash
    cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure7
    python3 CreateFigure.py
    ```
 
-The resulting figure will be saved as `figure7.pdf` in the same directory.
+   The resulting figure will be saved as `figure7.pdf` in the same directory.
 
 
 #### Figure 8
 
-On the server machine, follow these steps:
+1. On the server machine, follow these steps to run the server:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
    ./runServer.sh
    ```
 
-On the client machine, navigate to the following directory and edit the file `client.cpp`:
+2. On the client machine, navigate to the following directory and edit the file `client.cpp`:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
    vim client.cpp
    ```
 
-In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+   In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
 
    ```bash
    communication.connect_to("127.0.0.1");
    ```
 
-Then, in the same directory, execute:
+3. To run the client, in the same directory, execute:
 
    ```bash
    ./runClientFig8.sh
    ```
 
-Once the execution is complete, return to the server machine and navigate to the following directory and run the server as follows:
+4. Second part of this figure. Once the previous execution is complete, return to the server machine and navigate to the following directory and run the server as follows:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
    ./runServer
    ```
 
-Now, on the client machine, in the same directory, run:
+5. Now, on the client machine, in the same directory, run:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
    ./runClientNoSGX.sh
    ```
 
-Once the last execution is done, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
+6. Once the last execution is done, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure8
    python3 CreateFigure.py
    ```
 
-The resulting figure will be saved as `figure8.pdf` in the same directory.
+   The resulting figure will be saved as `figure8.pdf` in the same directory.
 
 
 #### Figure 9
 
-On the server machine, follow these steps:
+1. On the server machine, follow these steps to run the server:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
    ./runServer.sh
    ```
 
-On the client machine, navigate to the following directory and edit the file `client.cpp`:
+2. On the client machine, navigate to the following directory and edit the file `client.cpp`:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
    vim client.cpp
    ```
 
-If you haven't already done so, in line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+   If you haven't already done so, in line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
 
    ```bash
    communication.connect_to("127.0.0.1");
    ```
 
-Then, in the same directory, execute:
+3. To run the client, in the same directory, execute:
 
    ```bash
    ./runClientFig9.sh
    ```
 
-Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
+4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
 
    ```bash
    cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure9
    python3 CreateFigure.py
    ```
 
-The resulting figure will be saved as `figure9.pdf` in the same directory.
+   The resulting figure will be saved as `figure9.pdf` in the same directory.
