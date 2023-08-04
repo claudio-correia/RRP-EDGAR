@@ -203,7 +203,7 @@ In our code, we use OpenSSL inside and outside the enclave, and to achieve this,
 
 ### Figures Generation
 
-The paper includes 3 different figures for evaluation, and we describe the steps to generate each figure on each machine.
+The paper includes 3 different figures for evaluation, and we describe the steps to generate each figure on each machine. Open a terminal in each machine (client and server) and move the terminal to the root of this project. 
 
 #### Figure 7
 
@@ -236,7 +236,7 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
    
    ```bash
-   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure7
+   cd RRP-EDGAR/PlotFigures/Figure7
    python3 CreateFigure.py
    ```
 
@@ -248,14 +248,14 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 1. On the server machine, follow these steps to run the server:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
+   cd RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
    ./runServer.sh
    ```
 
 2. On the client machine, navigate to the following directory and edit the file `client.cpp`:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   cd RRP-EDGAR/CodeFigure8and9/Client
    vim client.cpp
    ```
 
@@ -274,21 +274,21 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 4. Second part of this figure. Once the previous execution is complete, return to the server machine and navigate to the following directory and run the server as follows:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   cd RRP-EDGAR/CodeFigure8and9/Client
    ./runServer
    ```
 
 5. Now, on the client machine, in the same directory, run:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   cd RRP-EDGAR/CodeFigure8and9/Client
    ./runClientNoSGX.sh
    ```
 
 6. Once the last execution is done, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure8
+   cd RRP-EDGAR/PlotFigures/Figure8
    python3 CreateFigure.py
    ```
 
@@ -300,14 +300,14 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 1. On the server machine, follow these steps to run the server:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
+   cd RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
    ./runServer.sh
    ```
 
 2. On the client machine, navigate to the following directory and edit the file `client.cpp`:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   cd RRP-EDGAR/CodeFigure8and9/Client
    vim client.cpp
    ```
 
@@ -326,7 +326,7 @@ The paper includes 3 different figures for evaluation, and we describe the steps
 4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
 
    ```bash
-   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure9
+   cd RRP-EDGAR/PlotFigures/Figure9
    python3 CreateFigure.py
    ```
 
