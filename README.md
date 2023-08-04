@@ -17,14 +17,14 @@ In this section, we explain how to run our experiments in a simulated environmen
    docker pull claudio21/rrp-edgar:1.0
    ```
 
-3. Create and run the container.
+4. Create and run the container.
    ```bash
    docker create -it --name EDGAR claudio21/rrp-edgar:1.0
    docker start EDGAR
    docker attach EDGAR 
    ```
 
-4. Our code is already available inside the container. You can either use the terminal and navigate to the following directory:
+5. Our code is already available inside the container. You can either use the terminal and navigate to the following directory:
    ```bash
    cd /home/RRP-EDGAR
    ```
@@ -33,19 +33,19 @@ In this section, we explain how to run our experiments in a simulated environmen
    git clone https://github.com/claudio-correia/RRP-EDGAR
    ```
 
-5. Run the simulations using the provided bash script, executing it inside the root directory of our repository `RRP-EDGAR` (this simulation can take several hours, around 5 hours):
+6. Run the simulations using the provided bash script, executing it inside the root directory of our repository `RRP-EDGAR` (this simulation can take several hours, around 5 hours):
    ```bash
    ./runFigures.sh 
    ```
    The results will be stored in the `data` directory for each figure. For example, the data points for figure 7 will be stored in the `PlotFigures/Figure7/Data` directory.
 
-6. Analyze the results and generate figures using the provided Python script.
+7. Analyze the results and generate figures using the provided Python script.
    ```bash
    ./plotFigures.sh 
    ```
    The figures (in PDF format) will be stored in each figure's directory. For example, figure 7 is located in `PlotFigures/Figure7/figure7.pdf`.
 
-7. Exit the container and move the generated figures to be visualized.
+8. Exit the container and move the generated figures to be visualized.
    ```bash
    exit
    docker cp EDGAR:/home/RRP-EDGAR/PlotFigures/Figure7/figure7.pdf .
@@ -112,6 +112,9 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo apt-get install vim
    sudo apt-get install build-essential python-is-python3
    sudo apt-get install libssl-dev libcurl4-openssl-dev libprotobuf-dev 
+   sudo apt-get install python3-pip
+   pip3 install numpy
+   pip3 install matplotlib 
    ```
 
 2. We installed the Intel SGX driver, available here: [https://github.com/intel/linux-sgx-driver].
@@ -167,20 +170,153 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo apt update
    sudo apt-get install libsgx-launch libsgx-urts
    ```
+   
+
+
+
+
 
 ### OpenSSL installation
-In our code, we use OpenSSL inside and outside the enclave, and to achieve this, we followed the instructions provided here: [https://github.com/intel/intel-sgx-ssl]. Our project includes the necessary files to use OpenSSL version 1.1d, which can be found inside the folder `/RRP-EDGAR/CodeFigure8and9/compile_openssl`.
+In our code, we use OpenSSL inside and outside the enclave, and to achieve this, we followed the instructions provided here: [https://github.com/intel/intel-sgx-ssl]. Our project also includes the necessary files to use OpenSSL version 1.1d, which can be found inside the folder `/RRP-EDGAR/CodeFigure8and9/compile_openssl`. To use the same version of OpenSSL  do the folllowing:
 
-Tenho de confimar isto......
-Dentro desta pasta fiz:
-./Configure linux-x86_64
- make e make install
+   ```bash
+   cd ~/Downloads
+   wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+   sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+   sudo cpan install Text::Template 
+   cd /RRP-EDGAR/CodeFigure8and9/compile_openssl/openssl-OpenSSL_1_1_1d
+   ./Configure linux-x86_64 
+   make
+   sudo make install 
+   ```
+
+### Figures Generation
+
+The paper includes 3 different figures for evaluation, and we describe the steps to generate each figure on each machine.
+
+#### Figure 7
+
+On the server machine, follow these steps:
+
+   ```bash
+   cd RRP-EDGAR/CodeFigure7
+   ./runServer.sh
+   ```
+
+On the client machine, navigate to the same directory and edit the file `client.cpp`:
+
+   ```bash
+   cd RRP-EDGAR/CodeFigure7
+   vim client.cpp
+   ```
+
+In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+
+   ```bash
+   communication.connect_to("127.0.0.1");
+   ```
+
+Then, in the same directory, execute:
+
+   ```bash
+   ./runClient.sh
+   ```
+
+Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
+   
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure7
+   python3 CreateFigure.py
+   ```
+
+The resulting figure will be saved as `figure7.pdf` in the same directory.
 
 
+#### Figure 8
+
+On the server machine, follow these steps:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
+   ./runServer.sh
+   ```
+
+On the client machine, navigate to the following directory and edit the file `client.cpp`:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   vim client.cpp
+   ```
+
+In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+
+   ```bash
+   communication.connect_to("127.0.0.1");
+   ```
+
+Then, in the same directory, execute:
+
+   ```bash
+   ./runClientFig8.sh
+   ```
+
+Once the execution is complete, return to the server machine and navigate to the following directory and run the server as follows:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   ./runServer
+   ```
+
+Now, on the client machine, in the same directory, run:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   ./runClientNoSGX.sh
+   ```
+
+Once the last execution is done, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure8
+   python3 CreateFigure.py
+   ```
+
+The resulting figure will be saved as `figure8.pdf` in the same directory.
 
 
+#### Figure 9
 
+On the server machine, follow these steps:
 
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/intel-sgx-ssl-lin_2.14_1.1.1k/Linux/sgx/performance_test/ssl-sgx
+   ./runServer.sh
+   ```
 
+On the client machine, navigate to the following directory and edit the file `client.cpp`:
 
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/CodeFigure8and9/Client
+   vim client.cpp
+   ```
 
+If you haven't already done so, in line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+
+   ```bash
+   communication.connect_to("127.0.0.1");
+   ```
+
+Then, in the same directory, execute:
+
+   ```bash
+   ./runClientFig9.sh
+   ```
+
+Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
+
+   ```bash
+   cd ~/Downloads/RRP-EDGAR/PlotFigures/Figure9
+   python3 CreateFigure.py
+   ```
+
+The resulting figure will be saved as `figure9.pdf` in the same directory.
