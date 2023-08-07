@@ -1,5 +1,6 @@
 
 
+
 # RRP/EDGAR Implementation (CCS 2023)
 
 This is the official GitHub repository for the paper "Using Range-Revocable Pseudonyms to Provide Backward Unlinkability in the Edge," presented at CCS '23. The repository contains our code implementation and instructions on how to run the experiments. 
@@ -157,6 +158,8 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    When executing the following command, answer "no," and then specify that the directory is "/opt/intel/":
    ```bash
    sudo ./sgx_linux_x64_sdk_2.20.100.4.bin
+
+   source /opt/intel/sgxsdk/environment
    ```
 
 4. Install the Intel SGX PSW:
@@ -173,7 +176,7 @@ It is recommended to follow the steps described by Intel in the above link. Howe
 
    And we add the line:
    ```bash
-   deb [trusted=yes archamd64] file:/home/intelnuc5/Downloads/linux-sgx/linux/installer/deb/sgx_debian_local_repo jammy main
+   deb [trusted=yes arch=amd64] file:/home/intelnuc5/Downloads/linux-sgx/linux/installer/deb/sgx_debian_local_repo jammy main
    ```
    Finally, it is possible to install the PSW:
    
@@ -183,8 +186,13 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    ```
    
 
+### Download Project
+We have download ou project code into the `Downloads` folder, using the following septs:
 
-
+   ```bash
+   cd ~/Downloads
+   git clone https://github.com/claudio-correia/RRP-EDGAR/
+   ```
 
 
 ### OpenSSL installation
@@ -195,7 +203,7 @@ In our code, we use OpenSSL inside and outside the enclave, and to achieve this,
    wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
    sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
    sudo cpan install Text::Template 
-   cd /RRP-EDGAR/CodeFigure8and9/compile_openssl/openssl-OpenSSL_1_1_1d
+   cd RRP-EDGAR/CodeFigure8and9/compile_openssl/openssl-OpenSSL_1_1_1d/
    ./Configure linux-x86_64 
    make
    sudo make install 
@@ -233,7 +241,7 @@ The paper includes 3 different figures for evaluation, and we describe the steps
    ./runClient.sh
    ```
 
-4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
+4. Once the execution is complete, the  <ins>client machine</ins> will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure7/Data`. To generate the figure, run:
    
    ```bash
    cd RRP-EDGAR/PlotFigures/Figure7
@@ -285,7 +293,7 @@ The paper includes 3 different figures for evaluation, and we describe the steps
    ./runClientNoSGX.sh
    ```
 
-6. Once the last execution is done, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
+6. Once the last execution is done, the <ins>server machine</ins> will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure8/Data`. To generate the figure, run:
 
    ```bash
    cd RRP-EDGAR/PlotFigures/Figure8
@@ -304,14 +312,14 @@ The paper includes 3 different figures for evaluation, and we describe the steps
    ./runServer.sh
    ```
 
-2. On the client machine, navigate to the following directory and edit the file `client.cpp`:
+2. On the client machine, if you haven't already done so, navigate to the following directory and edit the file `client.cpp`:
 
    ```bash
    cd RRP-EDGAR/CodeFigure8and9/Client
    vim client.cpp
    ```
 
-   If you haven't already done so, in line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
+   In line 44, replace the local IP (127.0.0.1) with the IP of the server machine. The line should be similar to this:
 
    ```bash
    communication.connect_to("127.0.0.1");
@@ -323,7 +331,7 @@ The paper includes 3 different figures for evaluation, and we describe the steps
    ./runClientFig9.sh
    ```
 
-4. Once the execution is complete, the server machine will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
+4. Once the execution is complete, the <ins>server machine</ins> will have stored all the data points in `RRP-EDGAR/PlotFigures/Figure9/Data`. To generate the figure, run:
 
    ```bash
    cd RRP-EDGAR/PlotFigures/Figure9
