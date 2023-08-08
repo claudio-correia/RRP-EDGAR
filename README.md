@@ -155,12 +155,18 @@ It is recommended to follow the steps described by Intel in the above link. Howe
    sudo mkdir intel
    cd ~/Downloads/linux-sgx/linux/installer/bin       
    ```
-   When executing the following command, answer "no," and then specify that the directory is "/opt/intel/":
+   When executing the following command, answer "no," and then specify that the directory is `/opt/intel/`:
    ```bash
    sudo ./sgx_linux_x64_sdk_2.20.100.4.bin
 
    source /opt/intel/sgxsdk/environment
    ```
+
+   Then do:
+   ```bash
+   source /opt/intel/sgxsdk/environment
+   ```
+
 
 4. Install the Intel SGX PSW:
    ```bash
