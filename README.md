@@ -60,7 +60,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 In this section, we explain how to run our experiments in a simulated environment within a virtual machine. We provide a VM with all the necessary installations, running Ubuntu 22.04.2 LTS, with the Intel SGX SDK to execute the enclave in simulation mode, OpenSSL 3, and Python3 to generate the figures. To reproduce the numbers from the paper, follow these steps:
 
 1. Download the virtual machine from the following link:
-   [https://ulisboa-my.sharepoint.com/:f:/g/personal/ist181959_tecnico_ulisboa_pt/EkcWpZtXnDdAmROVg9IF-VkBdyAQ_olEO7Brj88-OotzhQ?e=HY6t36]
+   [https://ulisboa-my.sharepoint.com/:f:/g/personal/ist181959_tecnico_ulisboa_pt/EsJYC4_40cZFjRJ3Tm7VbgsBucRhPJQuVR3oNx7xd3EPWg?e=q62YrC]
 
 2. Unzip and mount the VM using VMware Workstation, available for Windows at:
    [https://www.vmware.com/products/workstation-player.html]
