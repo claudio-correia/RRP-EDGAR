@@ -21,7 +21,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 
 4. Create and run the container.
    ```bash
-   docker create -it --name EDGAR claudio21/rrp-edgar:1.0
+   docker create -it --name EDGAR claudio21/rrp-edgar:2.0
    docker start EDGAR
    docker attach EDGAR 
    ```
