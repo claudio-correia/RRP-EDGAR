@@ -16,7 +16,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 
 2. Pull the pre-built Docker image from: `https://hub.docker.com/r/claudio21/rrp-edgar`
    ```bash
-   docker pull claudio21/rrp-edgar:1.0
+   docker pull claudio21/rrp-edgar:2.0
    ```
 
 4. Create and run the container.
