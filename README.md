@@ -14,7 +14,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 1. Download and install Docker locally, available at:
    [https://www.docker.com/]
 
-2. Pull the pre-built Docker image from: `https://hub.docker.com/r/claudio21/rrp-edgar:1.0`
+2. Pull the pre-built Docker image from: `https://hub.docker.com/r/claudio21/rrp-edgar`
    ```bash
    docker pull claudio21/rrp-edgar:1.0
    ```
@@ -60,7 +60,7 @@ In this section, we explain how to run our experiments in a simulated environmen
 In this section, we explain how to run our experiments in a simulated environment within a virtual machine. We provide a VM with all the necessary installations, running Ubuntu 22.04.2 LTS, with the Intel SGX SDK to execute the enclave in simulation mode, OpenSSL 3, and Python3 to generate the figures. To reproduce the numbers from the paper, follow these steps:
 
 1. Download the virtual machine from the following link:
-   [https://drive.google.com/drive/folders/1tuoyePArkWoYJRObHvYIbZG6Ouvr3BYD?usp=sharing]
+   [https://ulisboa-my.sharepoint.com/:f:/g/personal/ist181959_tecnico_ulisboa_pt/EkcWpZtXnDdAmROVg9IF-VkBdyAQ_olEO7Brj88-OotzhQ?e=HY6t36]
 
 2. Unzip and mount the VM using VMware Workstation, available for Windows at:
    [https://www.vmware.com/products/workstation-player.html]
