@@ -2,6 +2,7 @@
 
 
 # RRP/EDGAR Implementation (CCS 2023)
+[![DOI:10.1145/3576915.3623111](http://img.shields.io/badge/DOI-10.1145/3576915.3623111-0077c2.svg)](https://doi.org/10.1145/3576915.3623111)
 
 This is the official GitHub repository for the paper "Using Range-Revocable Pseudonyms to Provide Backward Unlinkability in the Edge," presented at CCS '23. The repository contains our code implementation and instructions on how to run the experiments. 
 
